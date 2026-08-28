@@ -5,191 +5,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arayas Cheat Shop</title>
     <style>
-        /* Черный фон и шрифты */
-        body {
-            background-color: #0d0d0d;
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* Экран приветствия */
-        .welcome-screen {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            width: 100%;
-            min-height: 100vh;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        /* Большой красный самурай (арт/картинка) */
-        .samurai-logo {
-            font-size: 120px;
-            color: #ff2a2a;
-            text-shadow: 0 0 30px rgba(255, 42, 42, 0.6);
-            margin-bottom: 20px;
-            animation: pulse 2s infinite alternate;
-        }
-
-        @keyframes pulse {
-            from { transform: scale(1); }
-            to { transform: scale(1.05); }
-        }
-
-        /* Оранжевая кнопка ДАЛЕЕ */
-        .orange-btn {
-            background: linear-gradient(45deg, #ff6a00, #ee0979);
-            color: white;
-            border: none;
-            padding: 15px 50px;
-            font-size: 20px;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(255, 106, 0, 0.4);
-            transition: 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .orange-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 106, 0, 0.6);
-        }
-
-        /* Главная панель (скрыта изначально) */
-        .main-panel {
-            display: none;
-            width: 100%;
-            max-width: 800px;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        /* Меню сверху: Профиль, Поддержка, Баланс */
-        .top-menu {
-            display: flex;
-            justify-content: space-around;
-            background: #1a1a1a;
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid #333;
-            margin-bottom: 30px;
-        }
-
-        .menu-btn {
-            background: transparent;
-            color: #bbb;
-            border: none;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            padding: 5px 15px;
-        }
-
-        .menu-btn:hover {
-            color: #ff6a00;
-        }
-
-        /* Большая рамка для поиска и товаров */
-        .main-box {
-            background: #141414;
-            border: 2px solid #ff2a2a;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 0 25px rgba(255, 42, 42, 0.15);
-            text-align: center;
-        }
-
-        /* Поле ввода названия чита */
-        .cheat-input {
-            width: 100%;
-            max-width: 500px;
-            background: #222;
-            border: 1px solid #444;
-            padding: 15px;
-            border-radius: 8px;
-            color: white;
-            font-size: 16px;
-            outline: none;
-            transition: 0.3s;
-            box-sizing: border-box;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .cheat-input:focus {
-            border-color: #ff6a00;
-            box-shadow: 0 0 10px rgba(255, 106, 0, 0.3);
-        }
-
-        /* Секция под будущие товары */
-        .products-section {
-            border-top: 1px dashed #333;
-            padding-top: 20px;
-        }
-
-        .products-title {
-            color: #888;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
-
-        .placeholder-text {
-            color: #555;
-            font-style: italic;
-        }
+        body { background: #000; color: #fff; font-family: sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .screen { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; box-sizing: border-box; }
+        .samurai-img { width: 100%; max-width: 600px; height: auto; margin-bottom: 30px; }
+        .orange-btn { background: linear-gradient(45deg, #ff6a00, #ff4500); color: #fff; border: none; padding: 15px 50px; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; }
+        .panel { display: none; width: 100%; max-width: 800px; padding: 20px; }
+        .menu { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 20px; }
+        .menu-btn { flex: 1; background: #111; color: #fff; border: 1px solid #333; padding: 12px; cursor: pointer; font-weight: bold; }
+        .menu-btn.active, .menu-btn:hover { border-color: #ff6a00; color: #ff6a00; }
+        .box { background: #0a0a0a; border: 1px solid #222; padding: 30px; text-align: center; min-height: 250px; }
+        .sec { display: none; } .sec.active { display: block; }
+        .inp { width: 100%; max-width: 500px; background: #111; border: 1px solid #333; padding: 12px; color: #fff; margin-bottom: 20px; text-align: center; }
+        .tabs { display: flex; gap: 15px; border-bottom: 1px solid #222; margin-bottom: 15px; }
+        .tab-btn { background: none; border: none; color: #666; cursor: pointer; padding: 5px 10px; }
+        .tab-btn.active { color: #ff6a00; }
+        .tab-txt { display: none; text-align: left; color: #aaa; padding: 10px 0; }
+        .tab-txt.active { display: block; }
+        .txa { width: 100%; height: 80px; background: #111; border: 1px solid #333; color: #fff; padding: 10px; resize: none; margin-bottom: 15px; }
+        .alert { display: none; position: fixed; right: 20px; top: 50%; background: #ff2a2a; color: #fff; padding: 15px; font-weight: bold; cursor: pointer; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; }
+        .modal-in { background: #111; border: 1px solid #ff2a2a; padding: 25px; text-align: center; }
     </style>
 </head>
 <body>
 
-    <!-- 1. ЭКРАН ПРИВЕТСТВИЯ -->
-    <div class="welcome-screen" id="welcomeScreen">
-        <!-- Вместо эмодзи самурая потом сможешь вставить картинку <img> -->
-        <div class="samurai-logo">🥷</div>
-        <button class="orange-btn" onclick="showMainPanel()">Далее</button>
+    <!-- ЭКРАН 1: САМУРАЙ -->
+    <div class="screen" id="scr1">
+        <img src="https://pinimg.com" class="samurai-img">
+        <button class="orange-btn" onclick="goMain()">Далее</button>
     </div>
 
-    <!-- 2. ГЛАВНАЯ ПАНЕЛЬ С КНОПКАМИ И РАМКОЙ -->
-    <div class="main-panel" id="mainPanel">
-        
-        <!-- Верхнее меню -->
-        <div class="top-menu">
-            <button class="menu-btn" onclick="alert('Профиль в разработке')">👤 Профиль</button>
-            <button class="menu-btn" onclick="alert('Ссылка на поддержку')">💬 Поддержка</button>
-            <button class="menu-btn" onclick="alert('Баланс: 0 руб.')">💳 Баланс</button>
+    <!-- ЭКРАН 2: МАГАЗИН -->
+    <div class="panel" id="scr2">
+        <div class="menu">
+            <button class="menu-btn active" id="m-cat" onclick="setSec('cat')">🛒 КАТАЛОГ</button>
+            <button class="menu-btn" id="m-prof" onclick="setSec('prof')">👤 ПРОФИЛЬ</button>
+            <button class="menu-btn" id="m-sup" onclick="setSec('sup')">💬 ПОДДЕРЖКА</button>
+            <button class="menu-btn" style="cursor:default; pointer-events:none;">💳 БАЛАНС: 0.0 руб.</button>
         </div>
 
-        <!-- Большая рамка -->
-        <div class="main-box">
-            <input type="text" class="cheat-input" placeholder="Введите название чита...">
-            
-            <!-- Место под твои будущие товары -->
-            <div class="products-section">
-                <div class="products-title">Витрина товаров</div>
-                <div class="placeholder-text">[ Место для товаров, которые ты скинешь позже ]</div>
+        <div class="box">
+            <!-- КАТАЛОГ -->
+            <div id="s-cat" class="sec active">
+                <input type="text" class="inp" placeholder="Введите название чита...">
+                <div style="border-top:1px solid #222; padding-top:20px; color:#444; font-style:italic;">[ Место для твоих товаров ]</div>
+            </div>
+
+            <!-- ПРОФИЛЬ -->
+            <div id="s-prof" class="sec">
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="setTab('t1')">Покупки</button>
+                    <button class="tab-btn" onclick="setTab('t2')">Ключи</button>
+                    <button class="tab-btn" onclick="setTab('t3')">История</button>
+                    <button class="tab-btn" onclick="setTab('t4')">Баланс</button>
+                </div>
+                <div id="t1" class="tab-txt active">Нет купленных товаров.</div>
+                <div id="t2" class="tab-txt">Список ключей пуст.</div>
+                <div id="t3" class="tab-txt">История операций пуста.</div>
+                <div id="t4" class="tab-txt">Баланс: <span style="color:#ff6a00">0.0 рублей</span></div>
+            </div>
+
+            <!-- ПОДДЕРЖКА -->
+            <div id="s-sup" class="sec" style="text-align:left;">
+                <h3>Оставьте жалобу:</h3>
+                <textarea class="txa" id="msg" placeholder="Текст сообщения..."></textarea>
+                <button class="orange-btn" style="padding:10px 30px; font-size:14px;" onclick="sendMsg()">Отправить</button>
             </div>
         </div>
+    </div>
 
+    <!-- АДМИНКА -->
+    <div class="alert" id="warn" onclick="openAdm()">⚠️ Жалоба</div>
+    <div class="modal" id="mod">
+        <div class="modal-in">
+            <h3 style="color:#ff2a2a; margin:0 0 15px 0;">Админ-панель</h3>
+            <input type="password" id="pass" class="inp" placeholder="Код...">
+            <button class="orange-btn" style="padding:10px 20px;" onclick="checkAdm()">Войти</button>
+            <button class="menu-btn" style="padding:10px 20px; width:auto;" onclick="closeAdm()">X</button>
+        </div>
     </div>
 
     <script>
-        // Функция переключения экранов по нажатию "Далее"
-        function showMainPanel() {
-            document.getElementById('welcomeScreen').style.display = 'none';
-            document.getElementById('mainPanel').style.display = 'block';
+        let ticket = "";
+        function goMain() { document.getElementById('scr1').style.display='none'; document.getElementById('scr2').style.display='block'; }
+        function setSec(id) {
+            document.querySelectorAll('.sec').forEach(e => e.classList.remove('active'));
+            document.querySelectorAll('.menu .menu-btn').forEach(e => e.classList.remove('active'));
+            document.getElementById('s-'+id).classList.add('active');
+            if(document.getElementById('m-'+id)) document.getElementById('m-'+id).classList.add('active');
+        }
+        function setTab(id) {
+            document.querySelectorAll('.tab-txt').forEach(e => e.classList.remove('active'));
+            document.querySelectorAll('.tabs .tab-btn').forEach(e => e.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            event.target.classList.add('active');
+        }
+        function sendMsg() {
+            let txt = document.getElementById('msg').value.trim();
+            if(!txt) return alert("Введите текст!");
+            ticket = txt; document.getElementById('msg').value = "";
+            alert("Отправлено!"); document.getElementById('warn').style.display = 'block';
+        }
+        function openAdm() { document.getElementById('mod').style.display='flex'; }
+        function closeAdm() { document.getElementById('mod').style.display='none'; document.getElementById('pass').value=''; }
+        function checkAdm() {
+            if(document.getElementById('pass').value.trim() === "TestVetka") {
+                closeAdm(); alert("Жалоба:\n\"" + ticket + "\""); document.getElementById('warn').style.display='none';
+            } else alert("Неверно!");
         }
     </script>
 </body>
